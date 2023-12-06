@@ -1,13 +1,22 @@
+import db from "../models/index";
 
-let getHomePage = (req, res) => {
-    return res.render("homepage.ejs");
+
+let getHomePage = async (req, res) => {
+    try{
+        let data = await db.User.findAll();
+        console.log(data);
+        console.log("--------------");
+        return res.render("homepage.ejs",{"data":JSON.stringify(data)})
+    }catch(e){
+        console.log(e);
+    }
 }
-let getaboutus = (req, res) => {
+let getAboutUs = (req, res) => {
     return res.render("test/about.ejs");
 }
 
 
 module.exports = {
     getHomePage: getHomePage,
-    getaboutus: getaboutus,
+    getAboutUs: getAboutUs,
 }
