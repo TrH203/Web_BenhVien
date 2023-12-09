@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 viewEngine(app);
 initWebRoutes(app); // tell server all route in app
 
-test_connectDB();
+test_connectDB(); // test data whenever run page either homepage or other pages.
 
 let port = process.env.PORT || 6969; // if port === undefined => port6969
 

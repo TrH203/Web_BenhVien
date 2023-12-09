@@ -10,7 +10,7 @@ const sequelize = new Sequelize("hiendatabase", "root" , null, {
 let test_connectDB = async () => {
     try {
         await sequelize.authenticate();
-        console.log("Connection has been establish successfully");
+        console.log("Connection has been establish successfully !!!!!");
     } catch (error){
         console.error("Unable to connect to the database: ", error);
     }
