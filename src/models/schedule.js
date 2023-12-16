@@ -14,10 +14,11 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     Schedule.init({
-        key: DataTypes.STRING,
-        type: DataTypes.STRING,
-        valueEn: DataTypes.STRING,
-        valueVi: DataTypes.STRING,
+        currentNumber: DataTypes.INTEGER,
+        maxNumber: DataTypes.INTEGER,
+        date: DataTypes.DATE,
+        timeType: DataTypes.STRING,
+        doctorId: DataTypes.INTEGER
     }, {
         sequelize,
         modelName: 'Schedule',
