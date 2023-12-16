@@ -10,7 +10,7 @@ let app = express();
 //config app
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 viewEngine(app);
 initWebRoutes(app); // tell server all route in app
@@ -21,5 +21,5 @@ let port = process.env.PORT || 6969; // if port === undefined => port6969
 
 app.listen(port, () => {
     //callback
-    console.log("Backend Nodejs is running on port" + port)
+    console.log("Backend Nodejs is running on port: " + port)
 })
