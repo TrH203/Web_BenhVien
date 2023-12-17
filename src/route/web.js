@@ -6,8 +6,11 @@ let initWebRoutes = (app) => { //1 server == 1 application
 
     router.get("/", homeControllers.getHomePage);
 
-    router.get("/AboutUs", homeControllers.getAboutUs);
+    router.get("/about", homeControllers.getAboutUs);
 
+    router.get('/crud', homeControllers.getCRUD);
+
+    router.post("/post-crud", homeControllers.postCRUD)
     return app.use("/", router); // web app start with /(HOMEPAGE))
 }
 
