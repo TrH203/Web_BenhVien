@@ -1,12 +1,24 @@
 import bcrypt from "bcrypt";
-
+import db from "../models/index"
 
 
 let createNewService = async (data) => {
-    let passwordHashed = await hashPassword(data.password);
-    console.log("Data from crudService");
-    console.log(data);
-    console.log(passwordHashed);
+    try {
+        let passwordHashed = await hashPassword(data.password);
+        await db.Users.create({
+            firstName: data.firstName,
+            lastName: data.lastName,
+            gender: data.gender === '1' ? true : false,
+            email: data.email,
+            password: passwordHashed,
+            address: data.address + ", " + data.city,
+            roleId: data.role,
+            phoneNumber: data.phoneNumber,
+        })
+        return "Create user succeed";
+    } catch (e) {
+        throw e;
+    }
 }
 
 let hashPassword = async (password) => {
@@ -15,7 +27,7 @@ let hashPassword = async (password) => {
         let hash = await bcrypt.hash(password, salt);
         return hash;
     } catch (e) {
-        return e;
+        throw e;
     }
 }
 

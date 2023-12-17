@@ -20,8 +20,8 @@ let getCRUD = (req, res) => {
 }
 
 let postCRUD = async (req, res) => {
-    await CRUD.createNewService(req.body);
-    return res.send("hello post crud");
+    let createUserStatus = await CRUD.createNewService(req.body);
+    return res.send(createUserStatus);
 }
 
 
