@@ -14,6 +14,36 @@
         border-collapse: collapse;
         text-align: left;
     }
+
+    .action {
+        display: flex;
+        justify-content: center;
+    }
+
+    button {
+        border: none;
+        border-radius: 2px;
+        width: 60px;
+        height: 40px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .btn-edit {
+        background-color: rgba(66, 124, 0, 0.75)
+    }
+
+    .btn-edit:hover {
+        background-color: greenyellow;
+    }
+
+    .btn-delete {
+        background-color: rgba(255, 1, 1, 0.753);
+    }
+
+    .btn-delete:hover {
+        background-color: red;
+    }
 </style>
 
 <body>
@@ -29,6 +59,9 @@
             <th>
                 Phone Number
             </th>
+            <th>
+                Actions
+            </th>
         </tr>
         <%for(let row of data) {%>
             <tr>
@@ -40,6 +73,14 @@
                 </th>
                 <th>
                     <%= row.phoneNumber%>
+                </th>
+                <th>
+                    <div class='action'>
+                        <a href="/edit-crud?id=<%=row.id%>"><button class="btn-edit" type="button"
+                                onclick=>Edit</button></a>
+                        <a href="/delete-crud?id=<%=row.id%>"><button class="btn-delete" type="button"
+                                onclick=>Delete</button></a>
+                    </div>
                 </th>
             </tr>
             <%}%>

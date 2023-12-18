@@ -33,6 +33,35 @@ let displayCRUD = async (req, res) => {
     }
 }
 
+let editCRUD = async (req, res) => {
+    let data = await CRUD.get1UserService(req.query.id);
+    if (data) {
+        return res.render("editCRUD.ejs", { "data": data });
+    } else {
+        return res.render("notFound.ejs");
+    }
+}
+
+let deleteCRUD = async (req, res) => {
+    try {
+        let status = await CRUD.delete1UserService(req.query.id);
+        if (status) {
+            return res.send("delete succeed");
+        }
+        else {
+            return res.render("notFound.ejs");
+        }
+    } catch (e) {
+        throw e;
+    }
+
+}
+
+let updateCRUD = (req, res) => {
+    CRUD.update1UserService(req.body);
+    return res.render("updateCRUD.ejs");
+}
+
 
 module.exports = {
     getHomePage: getHomePage,
@@ -40,4 +69,7 @@ module.exports = {
     getCRUD: getCRUD,
     postCRUD: postCRUD,
     displayCRUD: displayCRUD,
+    editCRUD: editCRUD,
+    deleteCRUD: deleteCRUD,
+    updateCRUD: updateCRUD,
 }

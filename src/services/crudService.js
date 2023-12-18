@@ -11,7 +11,7 @@ let createNewService = async (data) => {
             gender: data.gender === '1' ? true : false,
             email: data.email,
             password: passwordHashed,
-            address: data.address + ", " + data.city,
+            address: data.address,
             roleId: data.role,
             phoneNumber: data.phoneNumber,
         })
@@ -41,7 +41,42 @@ let getUserService = async () => {
         throw e;
     }
 }
+let get1UserService = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let data = await db.Users.findByPk(id, {
+                raw: true
+            })
+            if (data) {
+                resolve(data);
+            }
+        } catch (e) {
+            reject(e);
+        }
+    })
+}
+let delete1UserService = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let status = await db.Users.destroy({
+                where: {
+                    id: id,
+                }
+            })
+            resolve(status);
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+let update1UserService = (data) => {
+    console.log(data);
+}
 module.exports = {
     createNewService: createNewService,
     getUserService: getUserService,
+    get1UserService: get1UserService,
+    delete1UserService: delete1UserService,
+    update1UserService: update1UserService,
 }
