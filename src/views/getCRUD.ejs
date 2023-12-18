@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get CRUD</title>
+</head>
+<style>
+    table,
+    tr,
+    th {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: left;
+    }
+</style>
+
+<body>
+    Hello
+    <table style="width: 100%;">
+        <tr>
+            <th>
+                Email
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Phone Number
+            </th>
+        </tr>
+        <%for(let row of data) {%>
+            <tr>
+                <th>
+                    <%= row.email%>
+                </th>
+                <th>
+                    <%= row.lastName%>
+                </th>
+                <th>
+                    <%= row.phoneNumber%>
+                </th>
+            </tr>
+            <%}%>
+    </table>
+</body>
+
+</html>

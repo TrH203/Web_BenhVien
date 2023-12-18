@@ -31,6 +31,17 @@ let hashPassword = async (password) => {
     }
 }
 
+let getUserService = async () => {
+    try {
+        let data = await db.Users.findAll({
+            raw: true, // show data more clearly
+        });
+        return data;
+    } catch (e) {
+        throw e;
+    }
+}
 module.exports = {
     createNewService: createNewService,
+    getUserService: getUserService,
 }

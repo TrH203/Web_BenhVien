@@ -11,6 +11,9 @@ let initWebRoutes = (app) => { //1 server == 1 application
     router.get('/crud', homeControllers.getCRUD);
 
     router.post("/post-crud", homeControllers.postCRUD)
+
+    router.get("/get-crud", homeControllers.displayCRUD)
+
     return app.use("/", router); // web app start with /(HOMEPAGE))
 }
 
