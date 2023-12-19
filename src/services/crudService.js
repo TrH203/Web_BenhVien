@@ -70,8 +70,17 @@ let delete1UserService = (id) => {
     })
 }
 
-let update1UserService = (data) => {
-    console.log(data);
+let update1UserService = async (id, data) => {
+    try {
+        let status = await db.Users.update(data, {
+            where: {
+                id: id,
+            }
+        })
+        return data;
+    } catch (e) {
+        throw e;
+    }
 }
 module.exports = {
     createNewService: createNewService,

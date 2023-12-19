@@ -58,7 +58,7 @@ let deleteCRUD = async (req, res) => {
 }
 
 let updateCRUD = (req, res) => {
-    CRUD.update1UserService(req.body);
+    CRUD.update1UserService(req.query.id, req.body);
     return res.render("updateCRUD.ejs");
 }
 

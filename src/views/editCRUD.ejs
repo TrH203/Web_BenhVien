@@ -11,16 +11,8 @@
 
 <body>
     <div class="container mt-5">
-        <form class="row g-3" action="/update-crud" method="POST">
-            <div class="col-md-6">
-                <label for="inputEmai4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" name="email" value="<%=data.email%>">
-            </div>
-            <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword4" name="password"
-                    value="<%=data.password%>">
-            </div>
+        <h1>Edit user's profile</h1>
+        <form class="row g-3" action="/update-crud?id=<%=data.id%>" method="POST">
             <div class="col-md-6">
                 <label for="input" class="form-label">First Name</label>
                 <input type="text" class="form-control" id="first-name" name="firstName" value="<%=data.firstName%>">
@@ -28,6 +20,10 @@
             <div class="col-md-6">
                 <label for="input" class="form-label">Last Name</label>
                 <input type="text" class="form-control" id="last-name" name="lastName" value="<%=data.lastName%>">
+            </div>
+            <div class="col-md-12">
+                <label for="inputEmai4" class="form-label">Email</label>
+                <input type="email" class="form-control" id="inputEmail4" name="email" value="<%=data.email%>">
             </div>
             <div class="col-md-12">
                 <label for="inputAddress" class="form-label">Address</label>
@@ -67,7 +63,7 @@
                 <button type="submit" class="btn btn-primary">Edit</button>
             </div>
             <div class="col-md-6">
-                <button type="" class="btn btn-danger">Exit</button>
+                <button type="button" class="btn btn-danger">Exit</button>
             </div>
         </form>
     </div>
