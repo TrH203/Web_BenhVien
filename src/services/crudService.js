@@ -63,7 +63,9 @@ let delete1UserService = (id) => {
                     id: id,
                 }
             })
-            resolve(status);
+            resolve(
+                updateDataTable()
+            );
         } catch (e) {
             reject(e)
         }
@@ -77,7 +79,16 @@ let update1UserService = async (id, data) => {
                 id: id,
             }
         })
-        return data;
+        return updateDataTable();
+    } catch (e) {
+        throw e;
+    }
+}
+
+let updateDataTable = async () => {
+    try {
+        let returnData = await db.Users.findAll();
+        return returnData;
     } catch (e) {
         throw e;
     }

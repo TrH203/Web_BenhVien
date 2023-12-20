@@ -44,9 +44,9 @@ let editCRUD = async (req, res) => {
 
 let deleteCRUD = async (req, res) => {
     try {
-        let status = await CRUD.delete1UserService(req.query.id);
-        if (status) {
-            return res.send("delete succeed");
+        let data = await CRUD.delete1UserService(req.query.id);
+        if (data) {
+            return res.render("getCRUD.ejs", { "data": data })
         }
         else {
             return res.render("notFound.ejs");
@@ -57,9 +57,9 @@ let deleteCRUD = async (req, res) => {
 
 }
 
-let updateCRUD = (req, res) => {
-    CRUD.update1UserService(req.query.id, req.body);
-    return res.render("updateCRUD.ejs");
+let updateCRUD = async (req, res) => {
+    let data = await CRUD.update1UserService(req.query.id, req.body);
+    return res.render("getCRUD.ejs", { 'data': data });
 }
 
 
