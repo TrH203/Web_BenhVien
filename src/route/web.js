@@ -1,5 +1,6 @@
 import express from "express";
 import homeControllers from "../controllers/homeControllers";
+import userControllers from "../controllers/userControllers";
 let router = express.Router(); // use Router in Express
 
 let initWebRoutes = (app) => { //1 server == 1 application
@@ -19,6 +20,9 @@ let initWebRoutes = (app) => { //1 server == 1 application
     router.post("/update-crud", homeControllers.updateCRUD);
 
     router.get("/delete-crud", homeControllers.deleteCRUD);
+
+    // connect Frontend - Backend
+    router.post("/api/login", userControllers.handleLogin);
 
     return app.use("/", router); // web app start with /(HOMEPAGE))
 }
