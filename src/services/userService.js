@@ -53,7 +53,7 @@ let compareUserPassword = (userEmail, userPassword) => {
             })
             if (user === null) {
                 returnData.errCode = 2;
-                returnData.message = "not found user's email";
+                returnData.message = "not found user's email"; // this error will handle many user login in the same moment
             }
             else {
                 let check = bcrypt.compareSync(userPassword, user.password);
