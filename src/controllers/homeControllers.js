@@ -3,7 +3,7 @@ import CRUD from "../services/crudService";
 
 let getHomePage = async (req, res) => {
     try {
-        let data = await db.Users.findAll();
+        let data = await db.Users.findAll(); // used in getUserService
         console.log(data);
         console.log("--------------");
         return res.render("homepage.ejs", { "data": JSON.stringify(data) })
