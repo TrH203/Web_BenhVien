@@ -4,9 +4,11 @@ import viewEngine from "./config/viewEngine";
 import initWebRoutes from "./route/web";
 import test_connectDB from "./config/connectDB";
 require('dotenv').config(); // to use process.env
-
 let app = express();
 
+// config send request from react
+const cors = require("cors");
+app.use(cors({ credentials: true, origin: true }));
 //config app
 
 app.use(bodyParser.json())
