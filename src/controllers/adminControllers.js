@@ -2,7 +2,7 @@ import CRUD from "../services/adminService";
 
 const getUser = async (req, res) => {
     try {
-        let id = req.body.id;
+        let id = req.query.id;
         if (!id) {
             let Users = await CRUD.getAllUsers();
             return res.status(200).json(Users);
