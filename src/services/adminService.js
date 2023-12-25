@@ -5,9 +5,7 @@ const getAllUsers = () => {
         let returnData = { users: {} };
         try {
             let users = await db.Users.findAll({
-                // attributes: ["id", "email", "firstName", "lastName", "phoneNumber"],
                 attributes: { exclude: ["password"] },
-                raw: true,
             })
             returnData.errCode = 0;
             returnData.message = "get all users";
@@ -26,7 +24,6 @@ const get1User = (id) => {
         try {
             let user = await db.Users.findByPk(id, {
                 attributes: { exclude: ["password"] },
-                raw: true,
             })
             if (user) {
                 returnData.errCode = 0;
