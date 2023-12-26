@@ -1,6 +1,6 @@
 import CRUD from "../services/adminService";
 
-const getUser = async (req, res) => {
+const handleGetUser = async (req, res) => {
     try {
         let id = req.query.id;
         if (!id) {
@@ -18,6 +18,26 @@ const getUser = async (req, res) => {
     }
 }
 
+const handleCreateNewUser = async (req, res) => {
+    let data = req.body;
+    let sendApi = await CRUD.createNewUserService(data);
+    return res.status(200).json(sendApi);
+}
+
+const handleEditUser = async (req, res) => {
+    let data = req.body;
+    let sendApi = await CRUD.editUserService(data);
+    return res.status(200).json(sendApi);
+}
+const handleDeleteUser = async (req, res) => {
+    let data = req.body;
+    let sendApi = await CRUD.deleteUserService(data);
+    return res.status(200).json(sendApi);
+}
+
 module.exports = {
-    getUser: getUser,
+    handleGetUser: handleGetUser,
+    handleCreateNewUser: handleCreateNewUser,
+    handleEditUser: handleEditUser,
+    handleDeleteUser: handleDeleteUser,
 }

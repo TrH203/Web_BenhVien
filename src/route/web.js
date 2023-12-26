@@ -25,7 +25,13 @@ let initWebRoutes = (app) => { //1 server == 1 application
     // connect Frontend - Backend
     router.post("/api/login", userControllers.handleLogin);
 
-    router.get("/api/crud", adminControllers.getUser);
+    router.get("/api/crud", adminControllers.handleGetUser);
+
+    router.post("/api/create-new-user", adminControllers.handleCreateNewUser);
+
+    router.put("/api/edit-user", adminControllers.handleEditUser);
+
+    router.delete("/api/delete-user", adminControllers.handleDeleteUser);
 
     return app.use("/", router); // web app start with /(HOMEPAGE))
 }
