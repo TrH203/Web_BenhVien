@@ -55,7 +55,7 @@ const checkIsDuplicateEmail = (email) => {
             }
             resolve(true); // duplicated
         } catch (e) {
-            reject(e);
+            console.log(e);
         }
     })
 }
