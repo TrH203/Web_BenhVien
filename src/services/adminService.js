@@ -1,3 +1,4 @@
+import e from "cors";
 import db from "../models/index";
 import bcrypt from "bcrypt";
 const getAllUsers = () => {
@@ -106,38 +107,49 @@ const createNewUserService = (data) => {
 const editUserService = (data) => {
     return new Promise(async (resolve, reject) => {
         let returnData = { user: {} };
-        try {
-            let user = await db.Users.update({
-                firstName: data.firstName,
-                lastName: data.lastName,
-                gender: data.gender === '1' ? true : false,
-                email: data.email,
-                address: data.address,
-                roleId: data.roleId,
-                phoneNumber: data.phoneNumber,
-            }, { where: { id: data.id } });
-            if (user[0] === 0) {
-                returnData.errCode = 9;
-                returnData.message = 'not found user to edit';
-                resolve(returnData);
+        if (!data.id) {
+            returnData.errCode = -1;
+            returnData.message = "not found id";
+            resolve(returnData);
+        } else {
+            try {
+                let user = await db.Users.update({
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    gender: data.gender === '1' ? true : false,
+                    email: data.email,
+                    address: data.address,
+                    roleId: data.roleId,
+                    phoneNumber: data.phoneNumber,
+                }, { where: { id: data.id } });
+                if (user[0] === 0) {
+                    returnData.errCode = 9;
+                    returnData.message = 'not found user to edit';
+                    resolve(returnData);
+                }
+                if (user[0] === 1) {
+                    returnData.errCode = 0;
+                    returnData.message = "edit ok";
+                    returnData.user = user;
+                } resolve(returnData);
+            } catch (e) {
+                console.log(e);
+                returnData.errCode = 8;
+                returnData.message = e;
             }
-            if (user[0] === 1) {
-                returnData.errCode = 0;
-                returnData.message = "edit ok";
-                returnData.user = user;
-            } resolve(returnData);
-        } catch (e) {
-            console.log(e);
-            returnData.errCode = 8;
-            returnData.message = e;
-            reject(returnData);
         }
     })
+
 }
 
 const deleteUserService = (data) => {
     return new Promise(async (resolve, reject) => {
         let returnData = {};
+        if (!data.id) {
+            returnData.errCode = -1;
+            returnData.message = "missing id";
+            resolve(returnData);
+        }
         try {
             let user = await db.Users.destroy({
                 where: { id: data.id }
@@ -152,6 +164,7 @@ const deleteUserService = (data) => {
             }
             resolve(returnData);
         } catch (e) {
+            console.log(e);
             returnData.errCode = 10;
             returnData.message = e;
             reject(returnData);
