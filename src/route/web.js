@@ -33,6 +33,9 @@ let initWebRoutes = (app) => { //1 server == 1 application
 
     router.delete("/api/delete-user", adminControllers.handleDeleteUser);
 
+    //Allcode api (get code from allcode table)
+    router.get("/api/get-code", userControllers.handleGetCode);
+
     return app.use("/", router); // web app start with /(HOMEPAGE))
 }
 

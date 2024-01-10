@@ -20,6 +20,17 @@ let handleLogin = async (req, res) => {
     }
 }
 
+let handleGetCode = async (req, res) => {
+    let type = req.query.type;
+    let rs = await Service.getCode(type);
+    return res.status(200).json({
+        errCode: 0,
+        message: "ok",
+        code: rs
+    });
+}
+
 module.exports = {
     handleLogin: handleLogin,
+    handleGetCode: handleGetCode,
 }
