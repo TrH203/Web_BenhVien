@@ -22,6 +22,13 @@ let handleLogin = async (req, res) => {
 
 let handleGetCode = async (req, res) => {
     let type = req.query.type;
+    if (!type) {
+        return res.status(200).json({
+            errCode: -1,
+            message: "missing value",
+            code: []
+        })
+    }
     let rs = await Service.getCode(type);
     return res.status(200).json({
         errCode: 0,
