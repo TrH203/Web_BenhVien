@@ -75,29 +75,34 @@ let compareUserPassword = (userEmail, userPassword) => {
     })
 }
 let getCode = async (type) => {
-    // const projects = await sequelize.query("Select * from `allcode` where type = 'ROLE';",
-    //     {
-    //         model: db,
-    //         mapToModel: true,
-    //     });
-    // return projects;
-    return new Promise(async (resolve, reject) => {
-        try {
-            let projects = await sequelize.query(`Select * from allcode where type = '${type.toUpperCase()}';`,
-                {
-                    model: db,
-                    mapToModel: true,
-                });
-            resolve(projects);
-        } catch (e) {
-            console.log(e);
-            reject({
-                errCode: 15,
-                message: e,
-                data: []
-            })
-        }
-    })
+    try {
+        const projects = await sequelize.query(`Select * from allcode where type = '${type.toUpperCase()}';`,
+            {
+                model: db,
+                mapToModel: true,
+            });
+        return projects;
+    } catch (e) {
+        console.log(e);
+        return {}
+    }
+    // return new Promise(async (resolve, reject) => {
+    //     try {
+    //         let projects = await sequelize.query(`Select * from allcode where type = '${type.toUpperCase()}';`,
+    //             {
+    //                 model: db,
+    //                 mapToModel: true,
+    //             });
+    //         resolve(projects);
+    //     } catch (e) {
+    //         console.log(e);
+    //         reject({
+    //             errCode: 15,
+    //             message: e,
+    //             data: []
+    //         })
+    //     }
+    // })
 }
 module.exports = {
     handleUserLogin: handleUserLogin,

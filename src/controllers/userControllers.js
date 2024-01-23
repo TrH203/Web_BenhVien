@@ -30,11 +30,19 @@ let handleGetCode = async (req, res) => {
         })
     }
     let rs = await Service.getCode(type);
-    return res.status(200).json({
-        errCode: 0,
-        message: "ok",
-        code: rs
-    });
+    if (Object.keys(rs).length !== 0) {
+        return res.status(200).json({
+            errCode: 0,
+            message: "ok",
+            code: rs
+        })
+    }
+    else {
+        return res.status(200).json({
+            errCode: -1,
+            message: "fail"
+        })
+    }
 }
 
 module.exports = {
