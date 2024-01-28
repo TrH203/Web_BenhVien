@@ -29,20 +29,22 @@ let handleGetCode = async (req, res) => {
             code: []
         })
     }
-    let rs = await Service.getCode(type);
-    if (Object.keys(rs).length !== 0) {
-        return res.status(200).json({
-            errCode: 0,
-            message: "ok",
-            code: rs
-        })
-    }
-    else {
-        return res.status(200).json({
-            errCode: -1,
-            message: "fail"
-        })
-    }
+    setTimeout(async () => {
+        const rs = await Service.getCode(type);
+        if (Object.keys(rs).length !== 0) {
+            return res.status(200).json({
+                errCode: 0,
+                message: "ok",
+                code: rs
+            })
+        }
+        else {
+            return res.status(200).json({
+                errCode: -1,
+                message: "fail"
+            })
+        }
+    }, 500);
 }
 
 module.exports = {
