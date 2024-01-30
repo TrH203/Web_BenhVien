@@ -22,7 +22,9 @@ const handleCreateNewUser = async (req, res) => {
     let data = req.body;
     console.log(data);
     let sendApi = await CRUD.createNewUserService(data);
-    return res.status(200).json(sendApi);
+    setTimeout(() => {
+        return res.status(200).json(sendApi)
+    }, 1000)
 }
 
 const handleEditUser = async (req, res) => {
