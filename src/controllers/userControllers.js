@@ -44,7 +44,7 @@ let handleGetCode = async (req, res) => {
                 message: "fail"
             })
         }
-    }, 2000);
+    }, 1000);
 }
 
 module.exports = {

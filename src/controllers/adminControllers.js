@@ -5,7 +5,7 @@ const handleGetUser = async (req, res) => {
         let id = req.query.id;
         if (!id) {
             let Users = await CRUD.getAllUsers();
-            return res.status(200).json(Users);
+            setTimeout(() => { return res.status(200).json(Users); }, 500);
         }
         else {
             let User = await CRUD.get1User(id);
@@ -35,7 +35,7 @@ const handleEditUser = async (req, res) => {
 const handleDeleteUser = async (req, res) => {
     let data = req.body;
     let sendApi = await CRUD.deleteUserService(data);
-    return res.status(200).json(sendApi);
+    setTimeout(() => { return res.status(200).json(sendApi) }, 500);
 }
 
 module.exports = {
